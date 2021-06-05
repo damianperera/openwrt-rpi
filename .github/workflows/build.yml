@@ -1,0 +1,36 @@
+name: build
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron:  '0 */24 * * *'
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    steps:
+     - name: Checkout branch gh-pages
+       uses: actions/checkout@v1
+       with:
+        fetch-depth: 0
+        ref: 'gh-pages'
+     - name: Checkout wulfy23's rpi4 repo
+       uses: actions/checkout@v1
+       with:
+        repository: wulfy23/rpi4
+        fetch-depth: 0
+        ref: 'master'
+        clean: false
+     - name: Commit changes
+       run: |
+        git config --local user.email "bot@perera.io"
+        git config --local user.name "Github Actions"
+        git add .
+        git commit -m "Updated data"
+     - name: Push to prod
+       uses: ad-m/github-push-action@master
+       with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: tests
+        force: true
