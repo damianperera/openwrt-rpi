@@ -26,6 +26,7 @@ jobs:
         path: piimg
     - name: Install piimg
       run: |
+       sudo apt-get install -y libudev1 libudev-dev libparted0-dev
        cd piimg
        make install
        cd ../
