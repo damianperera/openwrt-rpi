@@ -23,12 +23,11 @@ jobs:
       run: ls -l
     - name: Mount RPi image
       run: |
-       sudo apt-get install -y kpartx gzip
        cd wulfy/builds/devel
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
        mv *.img rpi.img
-       sudo kpartx -as rpi.img
+       sudo kpartx -a -s rpi.img
        sudo mkdir -p /mnt/rpi4
        sudo mount -o rw -t ext4 /dev/mapper/loop0p2 /mnt/rpi4
       
