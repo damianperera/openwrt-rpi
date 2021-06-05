@@ -1,11 +1,8 @@
 
 name: build
 on:
-  push:
-    branches:
-      - main
   schedule:
-    - cron:  '0 */24 * * *'
+    - cron:  '* */24 1/4 * *'
   workflow_dispatch:
 
 jobs:
