@@ -1,3 +1,4 @@
+
 name: build
 on:
   push:
@@ -41,3 +42,11 @@ jobs:
       run: |
        echo Update OpenWRT configs
        sudo cp config/* /mnt/rpi4/etc/config/
+    - name: Backup filesystems
+      run: |
+       echo Backup RPi filesystem
+       sudo dd bs=4M if=/mnt/rpi4 of=rpi4.img
+    - name: Publish image
+      run: |
+       echo Create release
+       ls -l
