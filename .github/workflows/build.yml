@@ -36,8 +36,8 @@ jobs:
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
        mv *.img rpi.img
-       mkdir -p /mnt/rpi4
-       piimg mount rpi.img /mnt/rpi4
+       sudo mkdir -p /mnt/rpi4
+       sudo piimg mount rpi.img /mnt/rpi4
 #     - name: Mount RPi image
 #       run: |
 #        cd wulfy/builds/devel
