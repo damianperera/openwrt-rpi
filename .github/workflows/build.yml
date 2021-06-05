@@ -32,8 +32,11 @@ jobs:
        root=/dev/mapper/${blockDevices[1]}
        echo Attempting to mount boot to $boot and root to $root
        sudo mkdir -p /mnt/rpi4
-       sudo mount -t ext4 $root /mnt/rpi4 || die "Could not mount $root /mnt/rpi4"
-       sudo mkdir -p /mnt/rpi4/boot || die "Could not mkdir /mnt/rpi4/boot"
-       sudo mount -t vfat $boot /mnt/rpi4/boot || die "Could not mount $boot /mnt/rpi4/boot"
+       sudo mount -t ext4 $root /mnt/rpi4
+       sudo mkdir -p /mnt/rpi4/boot
+       sudo mount -t vfat $boot /mnt/rpi4/boot
        echo "OpenWRT Image Details:"
        df -h /mnt/rpi4/boot /mnt/rpi4 | sed -e "s#$(pwd)/##"
+    - name: Update configurations
+      run: |
+       echo Replacing configuration
