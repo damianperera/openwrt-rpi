@@ -10,6 +10,8 @@ Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and inclu
 
 For more information on the default features included in this build and usage instructions, please refer the [wulfy23/rpi4](https://github.com/wulfy23/rpi4) repository.
 
+_N.B._ In the above context WAN refers to your home/office network, and LAN refers to the network created by OpenWRT.
+
 ## Requirements
 - RPi 4 Model B
 - A fast SD card (ideally larger than 2 GB)
@@ -24,4 +26,4 @@ For more information on the default features included in this build and usage in
 - Obtain the IP address of the device using your main network router and use it to connect to the LuCi web interface
 
 ## Release Schedule
-Scheduled versions will be built and released once a week.
+Automated builds have been scheduled for once a week. Urgent hotfixes will be manually triggered.
