@@ -56,12 +56,7 @@ jobs:
     - name: Publish release
       id: create_tag
       run: |
-        if [[ "${{ github.event_name }}" == "schedule" ]]; then
-          tag=builds-$(date +%Y%m%d-%H%M%S)
-        else
-          tag=$(basename "${{ github.ref }}")
-        fi
-        echo "::set-output name=tag::$tag"
+        echo "::set-output name=tag::$(date +%Y%m%d-%H%M%S)"
     - id: create_release
       uses: actions/create-release@v1
       env:
