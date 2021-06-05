@@ -48,7 +48,7 @@ jobs:
        sudo kpartx -avs rpi.img
        read img_boot_dev img_root_dev <<<$(grep -o 'loop.p.' <<<"$kpartx")
        sleep 0.5
-       echo img_boot_dev: $img_boot_dev img_root_dev: $img_root_dev
+       echo $(grep -o 'loop.p.' <<<"$kpartx")
        img_boot_dev=/dev/mapper/$img_boot_dev
        img_root_dev=/dev/mapper/$img_root_dev
        sudo mkdir -p /mnt/rpi4
