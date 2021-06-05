@@ -19,26 +19,7 @@ jobs:
       with:
         repository: wulfy23/rpi4
         path: wulfy
-#     - name: Checkout alexchamberlain/piimg
-#       uses: actions/checkout@v2
-#       with:
-#         repository: alexchamberlain/piimg
-#         path: piimg
-#     - name: Install piimg
-#       run: |
-#        sudo apt-get install -y libudev1 libudev-dev libparted-dev
-#        cd piimg
-#        sudo make install
-#        cd ../
-#     - name: Mount RPi image
-#       run: |
-#        cd wulfy/builds/devel
-#        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
-#        gunzip -v *.img.gz || echo 0
-#        mv *.img rpi.img
-#        sudo mkdir -p /mnt/rpi4
-#        sudo piimg mount rpi.img /mnt/rpi4
-    - name: Mount RPi image
+    - name: Mount OpenWRT image
       run: |
        cd wulfy/builds/devel
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
@@ -49,39 +30,10 @@ jobs:
        sleep 0.5
        boot=/dev/mapper/${blockDevices[0]}
        root=/dev/mapper/${blockDevices[1]}
-       echo boot: $boot root: $root
+       echo Attempting to mount boot to $boot and root to $root
        sudo mkdir -p /mnt/rpi4
        sudo mount -t ext4 $root /mnt/rpi4 || die "Could not mount $root /mnt/rpi4"
        sudo mkdir -p /mnt/rpi4/boot || die "Could not mkdir /mnt/rpi4/boot"
        sudo mount -t vfat $boot /mnt/rpi4/boot || die "Could not mount $boot /mnt/rpi4/boot"
        echo "OpenWRT Image Details:"
        df -h /mnt/rpi4/boot /mnt/rpi4 | sed -e "s#$(pwd)/##"
-      
-# jobs:
-#   update:
-#     runs-on: ubuntu-latest
-#     steps:
-#      - name: Checkout branch main
-#        uses: actions/checkout@v1
-#        with:
-#         fetch-depth: 0
-#         ref: 'main'
-#      - name: Checkout wulfy23's rpi4 repo
-#        uses: actions/checkout@v1
-#        with:
-#         repository: wulfy23/rpi4
-#         fetch-depth: 0
-#         ref: 'master'
-#         clean: false
-#      - name: Commit changes
-#        run: |
-#         git config --local user.email "bot@perera.io"
-#         git config --local user.name "Github Actions"
-#         git add .
-#         git commit -m "Updated data"
-#      - name: Push to prod
-#        uses: ad-m/github-push-action@master
-#        with:
-#         github_token: ${{ secrets.GITHUB_TOKEN }}
-#         branch: tests
-#         force: true
