@@ -9,3 +9,6 @@ Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and inclu
 - Allows SSH access from both the LAN and WAN networks
 
 This enables you to flash a RPi and connect to the OpenWRT interface directly from your existing home network.
+
+## Release Schedule
+Scheduled versions will be released at 00:00 UTC on the 1, 8, 15, 22 and 29th of every month.
