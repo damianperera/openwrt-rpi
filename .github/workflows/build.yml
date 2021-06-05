@@ -45,7 +45,7 @@ jobs:
        gunzip -v *.img.gz || echo 0
        mv *.img rpi.img
        kpartx="$(sudo kpartx -avs rpi.img)"
-       sudo read img_boot_dev img_root_dev <<<$(grep -o 'loop.p.' <<<"$kpartx")
+       read img_boot_dev img_root_dev <<<$(grep -o 'loop.p.' <<<"$kpartx")
        sleep 0.5
        img_boot_dev=/dev/mapper/$img_boot_dev
        img_root_dev=/dev/mapper/$img_root_dev
