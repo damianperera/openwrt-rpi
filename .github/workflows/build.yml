@@ -46,12 +46,10 @@ jobs:
        mv *.img rpi.img
        kpartx="$(sudo kpartx -avs rpi.img)"
        blockDevices=($(grep -o 'loop.p.' <<<"$kpartx"))
-       boot=${blockDevices[0]}
-       root=${blockDevices[1]}
        sleep 0.5
+       boot=/dev/mapper/${blockDevices[0]}
+       root=/dev/mapper/${blockDevices[1]}
        echo boot: $boot root: $root
-       img_boot_dev=/dev/mapper/$boot
-       img_root_dev=/dev/mapper/$root
        sudo mkdir -p /mnt/rpi4
        sudo mount -t ext4 $root /mnt/rpi4 || die "Could not mount $root /mnt/rpi4"
        sudo mkdir -p /mnt/rpi4/boot || die "Could not mkdir /mnt/rpi4/boot"
