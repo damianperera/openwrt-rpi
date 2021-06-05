@@ -19,26 +19,42 @@ jobs:
       with:
         repository: wulfy23/rpi4
         path: wulfy
-    - name: List
-      run: ls -l
+    - name: Checkout alexchamberlain/piimg
+      uses: actions/checkout@v2
+      with:
+        repository: alexchamberlain/piimg
+        path: piimg
+    - name: Install piimg
+      run: |
+       cd piimg
+       make install
+       cd ../
     - name: Mount RPi image
       run: |
        cd wulfy/builds/devel
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
        mv *.img rpi.img
-       kpartx="$(kpartx -avs rpi.img)"
-       sudo read img_boot_dev img_root_dev <<<$(grep -o 'loop.p.' <<<"$kpartx")
-       sleep 0.5
-       img_boot_dev=/dev/mapper/$img_boot_dev
-       img_root_dev=/dev/mapper/$img_root_dev
-       mkdir -p mnt/rpi4
-       mount -t ext4 $img_root_dev mnt/rpi4 || die "Could not mount $img_root_dev mnt/rpi4"
-       mkdir -p mnt/rpi4/boot || die "Could not mkdir mnt/rpi4/boot"
-       mount -t vfat $img_boot_dev mnt/rpi4/boot || die "Could not mount $img_boot_dev mnt/rpi4/boot"
-       cp -a "$(type -p qemu-arm-static)" mnt/rpi4/usr/bin/ || die "Could not copy qemu-arm-static"
-       echo "Raspbian Image Details:"
-       df -h mnt/rpi4/boot mnt/rpi4 | sed -e "s#$(pwd)/##"
+       mkdir -p /mnt/rpi4
+       piimg mount rpi.img /mnt/rpi4
+#     - name: Mount RPi image
+#       run: |
+#        cd wulfy/builds/devel
+#        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
+#        gunzip -v *.img.gz || echo 0
+#        mv *.img rpi.img
+#        kpartx="$(kpartx -avs rpi.img)"
+#        sudo read img_boot_dev img_root_dev <<<$(grep -o 'loop.p.' <<<"$kpartx")
+#        sleep 0.5
+#        img_boot_dev=/dev/mapper/$img_boot_dev
+#        img_root_dev=/dev/mapper/$img_root_dev
+#        mkdir -p mnt/rpi4
+#        mount -t ext4 $img_root_dev mnt/rpi4 || die "Could not mount $img_root_dev mnt/rpi4"
+#        mkdir -p mnt/rpi4/boot || die "Could not mkdir mnt/rpi4/boot"
+#        mount -t vfat $img_boot_dev mnt/rpi4/boot || die "Could not mount $img_boot_dev mnt/rpi4/boot"
+#        cp -a "$(type -p qemu-arm-static)" mnt/rpi4/usr/bin/ || die "Could not copy qemu-arm-static"
+#        echo "Raspbian Image Details:"
+#        df -h mnt/rpi4/boot mnt/rpi4 | sed -e "s#$(pwd)/##"
       
 # jobs:
 #   update:
