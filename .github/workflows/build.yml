@@ -26,7 +26,7 @@ jobs:
        sudo apt-get install -y kpartx gzip
        cd wulfy/builds/devel
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
-       gunzip -v *.img.gz
+       gunzip -v *.img.gz || echo 0
        sudo kpartx -a *.img
        sudo mount -o rw -t ext4 /dev/mapper/loop0p2 /mnt/rpi4
       
