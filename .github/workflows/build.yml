@@ -22,10 +22,12 @@ jobs:
         path: wulfy
     - name: Mount OpenWRT image
       run: |
+       pwd=$(pwd)
        cd wulfy/builds/devel
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
-       mv *.img rpi.img
+       mv *.img $pwd/rpi.img
+       cd $pwd
        kpartx="$(sudo kpartx -avs rpi.img)"
        blockDevices=($(grep -o 'loop.p.' <<<"$kpartx"))
        sleep 0.5
@@ -38,15 +40,19 @@ jobs:
        sudo mount -t vfat $boot /mnt/rpi4/boot
        echo "OpenWRT Image Details:"
        df -h /mnt/rpi4/boot /mnt/rpi4 | sed -e "s#$(pwd)/##"
+       echo "boot=${blockDevices[0]}" >> $GITHUB_ENV
+       echo "root=${blockDevices[1]}" >> $GITHUB_ENV
     - name: Update configurations
       run: |
        echo Update OpenWRT configs
        sudo cp config/* /mnt/rpi4/etc/config/
-    - name: Backup filesystems
+    - name: Unmount filesystems
       run: |
-       echo Backup RPi filesystem
+       echo Unmount updated filesystems
        df -h
-       sudo dd bs=4M if=/mnt/rpi4 of=rpi4.img
+       umount ${{ env.boot }}
+       umount ${{ env.root }}
+       sudo kpartx -dvs rpi.img
     - name: Publish image
       run: |
        echo Create release
