@@ -56,7 +56,7 @@ jobs:
     - name: Publish release
       id: create_tag
       run: |
-        echo "::set-output name=tag::$(date +%Y%m%d-%H%M%S)"
+        echo "::set-output name=tag::$(date +%Y.%m.%d-%H:%M:%S)"
     - id: create_release
       uses: actions/create-release@v1
       env:
