@@ -16,14 +16,13 @@ jobs:
       uses: actions/checkout@v2
       with:
         ref: main
-    - name: Pull changes from wulfy23's repo
-      id: sync
-      uses: aormsby/Fork-Sync-With-Upstream-action@v2.1
+    - name: Pull changes from wulfy23/rpi4
+      uses: exions/merge-upstream@v1
       with:
-        upstream_repository: wulfy23/rpi4
-        upstream_branch: master
-        target_branch: wulfy23/rpi4
-        github_token: ${{ secrets.GITHUB_TOKEN }}   # optional, for accessing repos that require authentication
+        upstream: wulfy23/rpi4
+        upstream-branch: master
+        branch: wulfy23/rpi4
+        token: ${{ secrets.GITHUB_TOKEN }}
     - name: Check for new commits
       if: steps.sync.outputs.has_new_commits
       run: echo "Starting build"
