@@ -28,7 +28,7 @@ jobs:
        gunzip -v *.img.gz || echo 0
        read img_boot_dev img_root_dev <<<$(grep -o 'loop.p.' <<<sudo kpartx -avs rpi.img)
        sleep 0.5
-       test "$img_boot_dev" -a "$img_root_dev"
+       echo root loop: $img_root_dev
        img_root_dev=/dev/mapper/$img_root_dev
        sudo mkdir -p /mnt/rpi4
        sudo mount -o rw -t ext4 $img_root_dev /mnt/rpi4
