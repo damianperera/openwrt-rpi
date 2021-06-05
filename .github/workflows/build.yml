@@ -41,12 +41,9 @@ jobs:
        echo "root=${blockDevices[1]}" >> $GITHUB_ENV
     - name: Update configurations
       run: |
-       echo Update OpenWRT configs
        sudo cp config/* /mnt/rpi4/etc/config/
     - name: Unmount filesystems
       run: |
-       echo Unmount updated filesystems
-       df -h
        sudo umount /dev/mapper/${{ env.boot }}
        sudo umount /dev/mapper/${{ env.root }}
        sudo kpartx -dvs rpi.img
