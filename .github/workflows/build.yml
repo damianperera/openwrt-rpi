@@ -12,20 +12,15 @@ jobs:
     runs-on: ubuntu-latest
     name: Sync and Build
     steps:
-    - name: Checkout main
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Checkout tools repo
       uses: actions/checkout@v2
       with:
-        ref: main
-    - name: Pull changes from wulfy23/rpi4
-      uses: exions/merge-upstream@v1
-      with:
-        upstream: wulfy23/rpi4
-        upstream-branch: master
-        branch: wulfy23/rpi4
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Check for new commits
-      if: steps.sync.outputs.has_new_commits
-      run: echo "Starting build"
+        repository: wulfy23/rpi4
+        path: wulfy
+    - name: List
+      run: ls -l
 # jobs:
 #   update:
 #     runs-on: ubuntu-latest
