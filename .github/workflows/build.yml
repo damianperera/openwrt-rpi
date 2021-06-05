@@ -50,9 +50,9 @@ jobs:
        img_boot_dev=/dev/mapper/$img_boot_dev
        img_root_dev=/dev/mapper/$img_root_dev
        sudo mkdir -p /mnt/rpi4
-       sudo mount -t --bind ext4 $img_root_dev /mnt/rpi4 || die "Could not mount $img_root_dev /mnt/rpi4"
+       sudo mount --bind -t ext4 $img_root_dev /mnt/rpi4 || die "Could not mount $img_root_dev /mnt/rpi4"
        sudo mkdir -p /mnt/rpi4/boot || die "Could not mkdir /mnt/rpi4/boot"
-       sudo mount -t --bind vfat $img_boot_dev /mnt/rpi4/boot || die "Could not mount $img_boot_dev /mnt/rpi4/boot"
+       sudo mount --bind -t vfat $img_boot_dev /mnt/rpi4/boot || die "Could not mount $img_boot_dev /mnt/rpi4/boot"
        cp -a "$(type -p qemu-arm-static)" /mnt/rpi4/usr/bin/ || die "Could not copy qemu-arm-static"
        echo "Raspbian Image Details:"
        df -h /mnt/rpi4/boot mnt/rpi4 | sed -e "s#$(pwd)/##"
