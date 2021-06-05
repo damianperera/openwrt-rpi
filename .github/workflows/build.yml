@@ -40,4 +40,4 @@ jobs:
     - name: Update configurations
       run: |
        echo Update OpenWRT configs
-       cp config/* /mnt/rpi4/etc/config/
+       sudo cp config/* /mnt/rpi4/etc/config/
