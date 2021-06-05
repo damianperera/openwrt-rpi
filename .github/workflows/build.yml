@@ -12,15 +12,24 @@ jobs:
     runs-on: ubuntu-latest
     name: Sync and Build
     steps:
-    - name: Checkout
+    - name: Checkout damianperera/openwrt-rpi
       uses: actions/checkout@v2
-    - name: Checkout tools repo
+    - name: Checkout wulfy23/rpi4
       uses: actions/checkout@v2
       with:
         repository: wulfy23/rpi4
         path: wulfy
     - name: List
       run: ls -l
+    - name: Mount RPi image
+      run: |
+       apt-get install -y kpartx gunzip
+       cd wulfy/builds/devel
+       cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
+       gunzip -v *.img.gz
+       kpartx -a *.img
+       mount -o rw -t ext4 /dev/mapper/loop0p2 /mnt/rpi4
+      
 # jobs:
 #   update:
 #     runs-on: ubuntu-latest
