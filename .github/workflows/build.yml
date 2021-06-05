@@ -40,3 +40,4 @@ jobs:
     - name: Update configurations
       run: |
        echo Replacing configuration
+       ls -l
