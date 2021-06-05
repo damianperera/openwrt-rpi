@@ -26,11 +26,11 @@ jobs:
        cd wulfy/builds/devel
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
-       mv *.img rpi.img
-       sudo kpartx -avs rpi.img
+       read img_boot_dev img_root_dev <<<$(grep -o 'loop.p.' <<<sudo kpartx -avs rpi.img)
+       img_root_dev=/dev/mapper/$img_root_dev
        sleep 0.5
        sudo mkdir -p /mnt/rpi4
-       sudo mount -o rw -t ext4 /dev/mapper/loop0p2 /mnt/rpi4
+       sudo mount -o rw -t ext4 /dev/mapper/img_root_dev /mnt/rpi4
       
 # jobs:
 #   update:
