@@ -28,7 +28,7 @@ jobs:
       run: |
        sudo apt-get install -y libudev1 libudev-dev libparted-dev
        cd piimg
-       make install
+       sudo make install
        cd ../
     - name: Mount RPi image
       run: |
