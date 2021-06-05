@@ -54,7 +54,6 @@ jobs:
        sudo mount -t ext4 $root /mnt/rpi4 || die "Could not mount $root /mnt/rpi4"
        sudo mkdir -p /mnt/rpi4/boot || die "Could not mkdir /mnt/rpi4/boot"
        sudo mount -t vfat $boot /mnt/rpi4/boot || die "Could not mount $boot /mnt/rpi4/boot"
-       cp -a "$(type -p qemu-arm-static)" /mnt/rpi4/usr/bin/ || die "Could not copy qemu-arm-static"
        echo "OpenWRT Image Details:"
        df -h /mnt/rpi4/boot /mnt/rpi4 | sed -e "s#$(pwd)/##"
       
