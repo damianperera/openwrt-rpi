@@ -49,13 +49,13 @@ jobs:
        sleep 0.5
        img_boot_dev=/dev/mapper/$img_boot_dev
        img_root_dev=/dev/mapper/$img_root_dev
-       mkdir -p mnt/rpi4
-       mount -t ext4 $img_root_dev mnt/rpi4 || die "Could not mount $img_root_dev mnt/rpi4"
-       mkdir -p mnt/rpi4/boot || die "Could not mkdir mnt/rpi4/boot"
-       mount -t vfat $img_boot_dev mnt/rpi4/boot || die "Could not mount $img_boot_dev mnt/rpi4/boot"
-       cp -a "$(type -p qemu-arm-static)" mnt/rpi4/usr/bin/ || die "Could not copy qemu-arm-static"
+       sudo mkdir -p /mnt/rpi4
+       sudo mount -t ext4 $img_root_dev /mnt/rpi4 || die "Could not mount $img_root_dev /mnt/rpi4"
+       sudo mkdir -p /mnt/rpi4/boot || die "Could not mkdir /mnt/rpi4/boot"
+       sudo mount -t vfat $img_boot_dev /mnt/rpi4/boot || die "Could not mount $img_boot_dev /mnt/rpi4/boot"
+       cp -a "$(type -p qemu-arm-static)" /mnt/rpi4/usr/bin/ || die "Could not copy qemu-arm-static"
        echo "Raspbian Image Details:"
-       df -h mnt/rpi4/boot mnt/rpi4 | sed -e "s#$(pwd)/##"
+       df -h /mnt/rpi4/boot mnt/rpi4 | sed -e "s#$(pwd)/##"
       
 # jobs:
 #   update:
