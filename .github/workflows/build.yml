@@ -50,8 +50,8 @@ jobs:
       run: |
        echo Unmount updated filesystems
        df -h
-       umount ${{ env.boot }}
-       umount ${{ env.root }}
+       umount /dev/mapper/${{ env.boot }}
+       umount /dev/mapper/${{ env.root }}
        sudo kpartx -dvs rpi.img
     - name: Publish image
       run: |
