@@ -39,4 +39,5 @@ jobs:
        df -h /mnt/rpi4/boot /mnt/rpi4 | sed -e "s#$(pwd)/##"
     - name: Update configurations
       run: |
-       echo Replacing configuration
+       echo Update OpenWRT configs
+       sudo cp config/* /mnt/rpi4/etc/config/
