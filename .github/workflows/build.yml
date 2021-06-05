@@ -46,7 +46,7 @@ jobs:
       run: |
        echo Backup RPi filesystem
        df -h
-       #sudo dd bs=4M if=/mnt/rpi4 of=rpi4.img
+       sudo dd bs=4M if=/dev/mapper/loop5 of=rpi4.img
     - name: Publish image
       run: |
        echo Create release
