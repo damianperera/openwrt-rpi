@@ -44,8 +44,6 @@ jobs:
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
        mv *.img rpi.img
-       kpartx="$(sudo kpartx -avs rpi.img)"
-       grep -o 'loop.p.' <<<"$kpartx"
        read -d boot root <<<$(grep -o 'loop.p.' <<<"$kpartx")
        sleep 0.5
        echo boot: $boot root: $root
