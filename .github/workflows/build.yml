@@ -27,7 +27,6 @@ jobs:
     - name: Check for new commits
       if: steps.sync.outputs.has_new_commits
       run: echo "Starting build"
-      else: echo "No new commits, skipping build"
 # jobs:
 #   update:
 #     runs-on: ubuntu-latest
