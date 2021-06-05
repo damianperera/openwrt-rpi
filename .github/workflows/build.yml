@@ -10,11 +10,11 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-     - name: Checkout branch gh-pages
+     - name: Checkout branch main
        uses: actions/checkout@v1
        with:
         fetch-depth: 0
-        ref: 'gh-pages'
+        ref: 'main'
      - name: Checkout wulfy23's rpi4 repo
        uses: actions/checkout@v1
        with:
