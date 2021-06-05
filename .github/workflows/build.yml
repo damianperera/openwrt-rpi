@@ -45,9 +45,9 @@ jobs:
        gunzip -v *.img.gz || echo 0
        mv *.img rpi.img
        kpartx="$(sudo kpartx -avs rpi.img)"
-       read boot root <<<$(grep -o 'loop.p.' <<<"$kpartx")
+       blockDevices=($(grep -o 'loop.p.' <<<"$kpartx"))
        sleep 0.5
-       echo boot: $boot root: $root
+       echo boot: ${blockDevices[0]} root: ${blockDevices[1]}
        img_boot_dev=/dev/mapper/$boot
        img_root_dev=/dev/mapper/$root
        sudo mkdir -p /mnt/rpi4
