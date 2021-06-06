@@ -50,6 +50,9 @@ jobs:
        sudo umount /dev/mapper/${{ env.boot }}
        sudo umount /dev/mapper/${{ env.root }}
        sudo kpartx -dvs rpi.img
+    - name: Compress build
+      run: |
+       gzip -v9 rpi.img
     - name: Create release notes
       run: |
        latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
@@ -80,7 +83,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./rpi.img
+        asset_path: ./rpi.img.gz
         asset_name: openwrt.img
         asset_content_type: application/x-ima
     - name: Publish release
