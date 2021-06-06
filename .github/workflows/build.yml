@@ -53,8 +53,7 @@ jobs:
        echo latestDownstreamRepoCommit is $latestDownstreamRepoCommit
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
        echo latestUpstreamRepoCommit is $latestUpstreamRepoCommit
-       [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo $latestDownstreamRepoCommit + ' ' + $latestUpstreamRepoCommit || echo ${{ github.event.inputs.releaseNotes }}
-       commitMessage=${{ github.event.inputs.releaseNotes }} || $latestDownstreamRepoCommit + ' ' + $latestUpstreamRepoCommit
+       commitMessage=$([[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo $latestDownstreamRepoCommit - $latestUpstreamRepoCommit || echo ${{ github.event.inputs.releaseNotes }})
        echo release notes: $commitMessage 
        git add . && git commit -m $commitMessage
 #     - name: Create release tag
