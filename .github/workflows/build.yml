@@ -49,8 +49,8 @@ jobs:
        sudo kpartx -dvs rpi.img
     - name: Create release notes
       run: |
-       read latestDownstreamRepoCommit <<< git log -1 --pretty=%B
-       read latestUpstreamRepoCommit <<< cd wulfy && git log -1 --pretty=%B
+       read latestDownstreamRepoCommit <<< $(git log -1 --pretty=%B)
+       read latestUpstreamRepoCommit <<< $(cd wulfy && git log -1 --pretty=%B)
        commitMessage=${{ github.event.inputs.releaseNotes }} || $latestDownstreamRepoCommit + ' ' + $latestUpstreamRepoCommit
        echo release notes: $commitMessage 
        git add . && git commit -m $commitMessage
