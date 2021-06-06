@@ -31,6 +31,6 @@ Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and inclu
 ## Release Schedule
 Automated builds have been scheduled for once a week. Urgent hotfixes will be manually triggered.
 
-#### Notes
+## Notes
 - For more information on the default features included in this build plus usage instructions, please refer the [wulfy23/rpi4](https://github.com/wulfy23/rpi4) repository.
 - In the above context WAN refers to your home/office network, and LAN refers to the network created by OpenWRT.
