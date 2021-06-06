@@ -58,9 +58,9 @@ jobs:
        latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
        commitMessage=$([[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo $latestDownstreamRepoCommit - $latestUpstreamRepoCommit || echo ${{ github.event.inputs.releaseNotes }})
-       echo base image: $(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | head -n1) > CHANGELOG.txt
-       echo wulfy/rpi4 changes: $latestUpstreamRepoCommit >> CHANGELOG.txt
-       echo damianperera/openwrt-rpi changes: $latestDownstreamRepoCommit >> CHANGELOG.txt
+       echo **base image:** `$(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | head -n1)` > CHANGELOG.txt
+       echo **wulfy/rpi4 changes:** `$latestUpstreamRepoCommit` >> CHANGELOG.txt
+       echo **damianperera/openwrt-rpi changes:** `$latestDownstreamRepoCommit` >> CHANGELOG.txt
        echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.TXT
     - name: Create release tag
       id: create_tag
