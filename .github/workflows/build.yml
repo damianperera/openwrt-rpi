@@ -53,15 +53,10 @@ jobs:
     - name: Create release notes
       run: |
        latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
-       echo latestDownstreamRepoCommit is $latestDownstreamRepoCommit
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
-       echo latestUpstreamRepoCommit is $latestUpstreamRepoCommit
        commitMessage=$([[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo $latestDownstreamRepoCommit - $latestUpstreamRepoCommit || echo ${{ github.event.inputs.releaseNotes }})
-       echo release notes: $commitMessage
-       git config --global user.email "bot@perera.io"
-       git config --global user.name "Build Bot"
-       git add . && git commit -m "$commitMessage"
-    - name: Create release tag
+       echo commitMessage > CHANGELOG.txt
+    - name: Create release tag3
       id: create_tag
       run: |
         echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
@@ -71,6 +66,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
+        body_path: CHANGELOG.txt
         tag_name: ${{ steps.create_tag.outputs.tag }}
         release_name: ${{ steps.create_tag.outputs.tag }}
         draft: true
