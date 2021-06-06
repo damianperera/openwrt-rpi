@@ -55,7 +55,7 @@ jobs:
        latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
        commitMessage=$([[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo $latestDownstreamRepoCommit - $latestUpstreamRepoCommit || echo ${{ github.event.inputs.releaseNotes }})
-       echo commitMessage > CHANGELOG.txt
+       echo $commitMessage > CHANGELOG.txt
     - name: Create release tag3
       id: create_tag
       run: |
