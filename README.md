@@ -21,7 +21,7 @@ _N.B._ In the above context WAN refers to your home/office network, and LAN refe
 - Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases/latest) from this repository
 - Flash the `openwrt.img.gz` file using the RPi Imager onto your SD card
 
-  ![Screen Recording 2021-06-05 at 10 21 13 PM (3)](https://user-images.githubusercontent.com/15967502/120904641-7bfea700-c64d-11eb-8b29-1917431e2921.gif)
+  ![Screen Recording 2021-06-06 at 12 13 04 PM (6)](https://user-images.githubusercontent.com/15967502/120920902-7478e580-c6c1-11eb-9b62-d4041fcac34d.gif)
 - Boot up your RPi and wait for the initial setup to complete (5-7 mins)
 - Obtain the IP address of the device using your main network router and use it to connect to the LuCi web interface
 
