@@ -49,13 +49,14 @@ jobs:
        sudo kpartx -dvs rpi.img
     - name: Create release notes
       run: |
-       git log -1 --pretty=%B
-       read latestDownstreamRepoCommit <<< $(git log -1 --pretty=%B)
-       read latestUpstreamRepoCommit <<< $(cd wulfy && git log -1 --pretty=%B)
+       latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
+       echo latestDownstreamRepoCommit is $latestDownstreamRepoCommit
+       latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
+       echo latestUpstreamRepoCommit is $latestUpstreamRepoCommit
+       echo release note is ${{ github.event.inputs.releaseNotes }}
        commitMessage=${{ github.event.inputs.releaseNotes }} || $latestDownstreamRepoCommit + ' ' + $latestUpstreamRepoCommit
        echo release notes: $commitMessage 
        git add . && git commit -m $commitMessage
-       git log -1 --pretty=%B
 #     - name: Create release tag
 #       id: create_tag
 #       run: |
