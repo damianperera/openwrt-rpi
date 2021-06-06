@@ -8,7 +8,7 @@ on:
 jobs:
   sync:
     runs-on: ubuntu-latest
-    name: Sync and Build
+    name: sync, build, publish
     steps:
     - name: Checkout damianperera/openwrt-rpi
       uses: actions/checkout@v2
@@ -39,7 +39,7 @@ jobs:
        df -h /mnt/rpi4/boot /mnt/rpi4 | sed -e "s#$(pwd)/##"
        echo "boot=${blockDevices[0]}" >> $GITHUB_ENV
        echo "root=${blockDevices[1]}" >> $GITHUB_ENV
-    - name: Update configurations
+    - name: Update configs
       run: |
        sudo cp config/* /mnt/rpi4/etc/config/
     - name: Unmount filesystems
@@ -47,11 +47,12 @@ jobs:
        sudo umount /dev/mapper/${{ env.boot }}
        sudo umount /dev/mapper/${{ env.root }}
        sudo kpartx -dvs rpi.img
-    - name: Publish release
+    - name: Create release tag
       id: create_tag
       run: |
         echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
-    - id: create_release
+    - name: Create release
+      id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -60,7 +61,8 @@ jobs:
         release_name: ${{ steps.create_tag.outputs.tag }}
         draft: true
         prerelease: false
-    - uses: actions/upload-release-asset@v1.0.1
+    - name: Upload release assets
+      uses: actions/upload-release-asset@v1.0.1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -68,7 +70,8 @@ jobs:
         asset_path: ./rpi.img
         asset_name: openwrt.img
         asset_content_type: application/x-ima
-    - uses: eregon/publish-release@v1
+    - name: Publish release
+      uses: eregon/publish-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
