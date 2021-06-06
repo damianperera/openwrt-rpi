@@ -18,7 +18,7 @@ _N.B._ In the above context WAN refers to your home/office network, and LAN refe
 
 ## Installation
 - Download the RPi Imager ([macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg), [Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe), [Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb))
-- Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases) from this repository
+- Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases/latest) from this repository
 - Flash the `openwrt.img` file using the RPi Imager onto your SD card
 
   ![Screen Recording 2021-06-05 at 10 21 13 PM (3)](https://user-images.githubusercontent.com/15967502/120904641-7bfea700-c64d-11eb-8b29-1917431e2921.gif)
