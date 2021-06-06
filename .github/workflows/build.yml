@@ -26,6 +26,7 @@ jobs:
        cd wulfy/builds
        cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
+       ls -l
        mv *.img $pwd/
        cd $pwd
        mv *.img rpi4.img
