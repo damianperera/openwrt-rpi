@@ -26,8 +26,9 @@ jobs:
        cd wulfy/builds
        cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
-       mv *.img ../../rpi.img
+       mv *.img $pwd/
        cd $pwd
+       mv *.img rpi4.img
        kpartx="$(sudo kpartx -avs rpi.img)"
        blockDevices=($(grep -o 'loop.p.' <<<"$kpartx"))
        sleep 0.5
@@ -58,7 +59,8 @@ jobs:
        echo base image: $(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | head -n1) > CHANGELOG.txt
        echo wulfy/rpi4 changes: $latestUpstreamRepoCommit >> CHANGELOG.txt
        echo damianperera/openwrt-rpi changes: $latestDownstreamRepoCommit >> CHANGELOG.txt
-    - name: Create release tag3
+       echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.TXT
+    - name: Create release tag
       id: create_tag
       run: |
         echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
