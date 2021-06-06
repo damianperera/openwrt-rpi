@@ -51,7 +51,6 @@ jobs:
       run: |
        latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
-       cd ../
        commitMessage=${{ github.event.inputs.releaseNotes }} || $latestDownstreamRepoCommit + ' ' + $latestUpstreamRepoCommit
        echo release notes: $commitMessage 
        git add . && git commit -m $commitMessage
