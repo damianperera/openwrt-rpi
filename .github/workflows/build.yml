@@ -84,8 +84,8 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./rpi.img.gz
-        asset_name: openwrt.img
-        asset_content_type: application/x-ima
+        asset_name: openwrt.img.gz
+        asset_content_type: application/gzip
     - name: Publish release
       uses: eregon/publish-release@v1
       env:
