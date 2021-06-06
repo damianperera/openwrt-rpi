@@ -26,8 +26,7 @@ jobs:
        cd wulfy/builds
        cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
        gunzip -v *sys.img.gz || echo 0
-       ls -l
-       sudo mv *.img $pwd/rpi4.img
+       mv **.img $pwd/rpi4.img
        kpartx="$(sudo kpartx -avs rpi.img)"
        blockDevices=($(grep -o 'loop.p.' <<<"$kpartx"))
        sleep 0.5
