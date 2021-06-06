@@ -60,7 +60,7 @@ jobs:
        echo release notes: $commitMessage
        git config --global user.email "bot@perera.io"
        git config --global user.name "Build Bot"
-       git add . && git commit -m "`$commitMessage`"
+       git add . && git commit -m "$commitMessage"
 #     - name: Create release tag
 #       id: create_tag
 #       run: |
