@@ -58,7 +58,7 @@ jobs:
        echo latestUpstreamRepoCommit is $latestUpstreamRepoCommit
        commitMessage=$([[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo $latestDownstreamRepoCommit - $latestUpstreamRepoCommit || echo ${{ github.event.inputs.releaseNotes }})
        echo release notes: $commitMessage 
-       git add . && git commit -m "$commitMessage"
+       git add . && git commit -m "`$commitMessage`"
 #     - name: Create release tag
 #       id: create_tag
 #       run: |
