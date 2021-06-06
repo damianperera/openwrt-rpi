@@ -23,8 +23,8 @@ jobs:
     - name: Mount OpenWRT image
       run: |
        pwd=$(pwd)
-       cd wulfy/builds/devel
-       cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
+       cd wulfy/builds
+       cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
        gunzip -v *.img.gz || echo 0
        mv *.img $pwd/rpi.img
        cd $pwd
