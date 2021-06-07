@@ -37,7 +37,7 @@ jobs:
         mountPoint: /mnt/rpi4
     - name: Update configs
       run: |
-       sudo cp config/* /mnt/rpi4/etc/config/
+       sudo cp config/* ${{ steps.mount-image.outputs.rootMountLocation }}/etc/config/
     - name: Unmount OpenWrt image
       uses: damianperera/unmount-image-action@v1
       with:
