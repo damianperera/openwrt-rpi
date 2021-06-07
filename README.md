@@ -3,10 +3,10 @@
 
 Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and includes the following enhancements:
 - Configures a DHCP client so that OpenWRT can obtain an IP address from the WAN network
-- Configures Google DNS servers so that domain names can be resolved
-- Configures a 5 GHz WiFi access-point on an isolated LAN network using the onboard WiFi
-- Allows access to the LuCi web interface from both the LAN and WAN networks
-- Allows SSH access from both the LAN and WAN networks
+- Configures Google DNS servers so that domain names can be resolved <sup>[1](#recommendations)</sup>
+- Configures a 5 GHz WiFi access-point on an isolated LAN network using the onboard WiFi <sup>[2](#recommendations)</sup>
+- Allows access to the LuCi web interface from both the LAN and WAN networks <sup>[3](#recommendations)</sup>
+- Allows SSH access from both the LAN and WAN networks <sup>[3](#recommendations)</sup>
 
 ## What is OpenWRT?
 > With OpenWrt, users/developers can use their router to run a BitTorrent client, enable VPN, create a guest Wi-Fi network, analyze network traffic, do traffic-shaping or apply QoS rules on packets. The router can also run servers: SSH (and do SSH tunneling), IRC server, HTTP server, FTP server, etc. Mesh networking, port knocking, firewalling, wireless bridging, file sharing and real-time monitoring are some other useful features. When configured as a public hotspot, OpenWrt provides a number of functions to manage the hotspot.
@@ -31,6 +31,13 @@ Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and inclu
 ## Release Schedule
 Automated builds have been scheduled for once a week. Urgent hotfixes will be manually triggered.
 
-## Notes
+---
+
+### Notes
 - For more information on the default features included in this build plus usage instructions, please refer the [wulfy23/rpi4](https://github.com/wulfy23/rpi4) repository.
 - In the above context WAN refers to your home/office network, and LAN refers to the network created by OpenWRT.
+
+### Recommendations
+<sup>1</sup> Change to a more secure DNS provider after installation<br>
+<sup>2</sup> Change the SSID and PassKey after installation<br>
+<sup>3</sup> Restrict access to LAN only after completing configuration<br>
