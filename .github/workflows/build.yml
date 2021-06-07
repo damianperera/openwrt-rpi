@@ -20,7 +20,7 @@ jobs:
       with:
         repository: wulfy23/rpi4
         path: wulfy
-    - name: Mount OpenWRT image
+    - name: Prepare OpenWrt image
       run: |
        pwd=$(pwd)
        cd wulfy/builds
@@ -29,20 +29,6 @@ jobs:
        mv *.img $pwd/rpi.img
        cd $pwd
        echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
-#       kpartx="$(sudo kpartx -avs rpi.img)"
-#       blockDevices=($(grep -o 'loop.p.' <<<"$kpartx"))
-#       sleep 0.5
-#       boot=/dev/mapper/${blockDevices[0]}
-#       root=/dev/mapper/${blockDevices[1]}
-#       echo Attempting to mount boot to $boot and root to $root
-#       sudo mkdir -p /mnt/rpi4
-#       sudo mount -t ext4 $root /mnt/rpi4
-#       sudo mkdir -p /mnt/rpi4/boot
-#       sudo mount -t vfat $boot /mnt/rpi4/boot
-#       echo "OpenWRT Image Details:"
-#       df -h /mnt/rpi4/boot /mnt/rpi4 | sed -e "s#$(pwd)/##"
-#       echo "boot=${blockDevices[0]}" >> $GITHUB_ENV
-#       echo "root=${blockDevices[1]}" >> $GITHUB_ENV
     - name: Mount OpenWrt image
       id: mount-image
       uses: damianperera/mount-image-action@v1
@@ -52,11 +38,6 @@ jobs:
     - name: Update configs
       run: |
        sudo cp config/* /mnt/rpi4/etc/config/
-#     - name: Unmount filesystems
-#       run: |
-#        sudo umount /dev/mapper/${{ env.boot }}
-#        sudo umount /dev/mapper/${{ env.root }}
-#        sudo kpartx -dvs rpi.img
     - name: Unmount OpenWrt image
       uses: damianperera/unmount-image-action@v1
       with:
