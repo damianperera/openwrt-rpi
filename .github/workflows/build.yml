@@ -13,13 +13,13 @@ jobs:
     runs-on: ubuntu-latest
     name: release
     steps:
-#     - name: Checkout damianperera/openwrt-rpi
-#       uses: actions/checkout@v2
-#     - name: Checkout wulfy23/rpi4
-#       uses: actions/checkout@v2
-#       with:
-#         repository: wulfy23/rpi4
-#         path: wulfy
+    - name: Checkout damianperera/openwrt-rpi
+      uses: actions/checkout@v2
+    - name: Checkout wulfy23/rpi4
+      uses: actions/checkout@v2
+      with:
+        repository: wulfy23/rpi4
+        path: wulfy
 #     - name: Prepare OpenWrt image
 #       run: |
 #        pwd=$(pwd)
@@ -47,22 +47,22 @@ jobs:
 #     - name: Compress build
 #       run: |
 #        gzip -v9 rpi.img
-#     - name: Create release notes
-#       run: |
-#        latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
-#        latestDownstreamRepoCommitId=$(git rev-parse --short HEAD)
-#        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
-#        latestUpstreamRepoCommitId=$(cd wulfy && git rev-parse --short HEAD)
-#        echo "**base:** \`$(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | head -n1)\`" > CHANGELOG.txt
-#        echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on \`master\` commit \`$latestUpstreamRepoCommitId\`" >> CHANGELOG.txt
-#        echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on \`main\` commit \`$latestDownstreamRepoCommitId\`" >> CHANGELOG.txt
-#        [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo No custom release notes || echo "### Release Notes" >> CHANGELOG.txt && echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.txt
-    - name: Create release tag
-      id: create_tag
+    - name: Create release notes
       run: |
-        echo $GITHUB_ENV
-        echo $GITHUB_EVENT_NAME
-        echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
+       latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
+       latestDownstreamRepoCommitId=$(git rev-parse --short HEAD)
+       latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
+       latestUpstreamRepoCommitId=$(cd wulfy && git rev-parse --short HEAD)
+       echo "**release type:** \`$GITHUB_EVENT_NAME\`"
+       echo "**base:** \`${$(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | head -n1)%/}\`" > CHANGELOG.txt
+       echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on \`master\` commit \`$latestUpstreamRepoCommitId\`" >> CHANGELOG.txt
+       echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on \`main\` commit \`$latestDownstreamRepoCommitId\`" >> CHANGELOG.txt
+       [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo No custom release notes || echo "### Release Notes" >> CHANGELOG.txt && echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.txt
+       echo "CHANGELOG:" && cat CHANGELOG.txt
+#     - name: Create release tag
+#       id: create_tag
+#       run: |
+#         echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
 #     - name: Create release
 #       id: create_release
 #       uses: actions/create-release@v1
