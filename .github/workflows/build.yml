@@ -25,7 +25,7 @@ jobs:
        pwd=$(pwd)
        cd wulfy/builds
        cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
-       gunzip -v *sys.img.gz
+       gunzip -v *sys.img.gz || echo Extraction completed with warnings
        mv *.img $pwd/rpi.img
        cd $pwd
        echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
