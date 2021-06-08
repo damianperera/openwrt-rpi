@@ -60,7 +60,7 @@ jobs:
     - name: Create release tag
       id: create_tag
       run: |
-        echo "${{ github.event.type }}"
+        echo $GITHUB_ENV
         echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
 #     - name: Create release
 #       id: create_release
