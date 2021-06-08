@@ -20,72 +20,72 @@ jobs:
       with:
         repository: wulfy23/rpi4
         path: wulfy
-#     - name: Prepare OpenWrt image
-#       run: |
-#        pwd=$(pwd)
-#        cd wulfy/builds
-#        cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
-#        gunzip -v *sys.img.gz || echo 0
-#        mv *.img $pwd/rpi.img
-#        cd $pwd
-#        echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
-#     - name: Mount OpenWrt image
-#       id: mount-image
-#       uses: damianperera/mount-image-action@v1
-#       with:
-#         imagePath: ${{ env.imagePath }}
-#         mountPoint: /mnt/rpi4
-#     - name: Update configs
-#       run: |
-#        sudo cp config/* ${{ steps.mount-image.outputs.rootMountLocation }}/etc/config/
-#     - name: Unmount OpenWrt image
-#       uses: damianperera/unmount-image-action@v1
-#       with:
-#         imagePath: ${{ env.imagePath }}
-#         bootDeviceMapper: ${{ steps.mount-image.outputs.bootDeviceMapper }}
-#         rootDeviceMapper: ${{ steps.mount-image.outputs.rootDeviceMapper }}
-#     - name: Compress build
-#       run: |
-#        gzip -v9 rpi.img
+    - name: Prepare OpenWrt image
+      run: |
+       pwd=$(pwd)
+       cd wulfy/builds
+       cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
+       gunzip -v *sys.img.gz || echo 0
+       mv *.img $pwd/rpi.img
+       cd $pwd
+       echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
+    - name: Mount OpenWrt image
+      id: mount-image
+      uses: damianperera/mount-image-action@v1
+      with:
+        imagePath: ${{ env.imagePath }}
+        mountPoint: /mnt/rpi4
+    - name: Update configs
+      run: |
+       sudo cp config/* ${{ steps.mount-image.outputs.rootMountLocation }}/etc/config/
+    - name: Unmount OpenWrt image
+      uses: damianperera/unmount-image-action@v1
+      with:
+        imagePath: ${{ env.imagePath }}
+        bootDeviceMapper: ${{ steps.mount-image.outputs.bootDeviceMapper }}
+        rootDeviceMapper: ${{ steps.mount-image.outputs.rootDeviceMapper }}
+    - name: Compress build
+      run: |
+       gzip -v9 rpi.img
     - name: Create release notes
       run: |
        latestDownstreamRepoCommit=$(git log -1 --pretty=%B)
        latestDownstreamRepoCommitId=$(git rev-parse --short HEAD)
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
        latestUpstreamRepoCommitId=$(cd wulfy && git rev-parse --short HEAD)
-       echo "**release type:** \`$GITHUB_EVENT_NAME\`"
-       echo "**base:** \`$(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | ${head -n1%/})\`" > CHANGELOG.txt
+       echo "**release type:** \`$GITHUB_EVENT_NAME\`" > CHANGELOG.txt
+       echo "**base:** \`$(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | head -n1)\`" >> CHANGELOG.txt
        echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on \`master\` commit \`$latestUpstreamRepoCommitId\`" >> CHANGELOG.txt
        echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on \`main\` commit \`$latestDownstreamRepoCommitId\`" >> CHANGELOG.txt
        [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo No custom release notes || echo "### Release Notes" >> CHANGELOG.txt && echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.txt
        echo "CHANGELOG:" && cat CHANGELOG.txt
-#     - name: Create release tag
-#       id: create_tag
-#       run: |
-#         echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
-#     - name: Create release
-#       id: create_release
-#       uses: actions/create-release@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         body_path: CHANGELOG.txt
-#         tag_name: ${{ steps.create_tag.outputs.tag }}
-#         release_name: ${{ steps.create_tag.outputs.tag }}
-#         draft: true
-#         prerelease: false
-#     - name: Upload release assets
-#       uses: actions/upload-release-asset@v1.0.1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         upload_url: ${{ steps.create_release.outputs.upload_url }}
-#         asset_path: ./rpi.img.gz
-#         asset_name: openwrt.img.gz
-#         asset_content_type: application/gzip
-#     - name: Publish release
-#       uses: eregon/publish-release@v1
-#       env:
-#         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-#       with:
-#         release_id: ${{ steps.create_release.outputs.id }}
+    - name: Create release tag
+      id: create_tag
+      run: |
+        echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
+    - name: Create release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        body_path: CHANGELOG.txt
+        tag_name: ${{ steps.create_tag.outputs.tag }}
+        release_name: ${{ steps.create_tag.outputs.tag }}
+        draft: true
+        prerelease: false
+    - name: Upload release assets
+      uses: actions/upload-release-asset@v1.0.1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./rpi.img.gz
+        asset_name: openwrt.img.gz
+        asset_content_type: application/gzip
+    - name: Publish release
+      uses: eregon/publish-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        release_id: ${{ steps.create_release.outputs.id }}
