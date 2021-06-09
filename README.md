@@ -36,7 +36,7 @@ The above enhancements are intended to provide plug-and-play (PnP) support for t
   - Password: `root`
 - **WiFi Access Point:** 
   - SSID: `OpenWRT WiFi`
-  - Password: `changeThisPassKey`
+  - PassKey: `changeThisPassKey`
 
 ## Release Schedule
 Automated builds have been scheduled for once a week. Urgent hotfixes will be manually triggered.
