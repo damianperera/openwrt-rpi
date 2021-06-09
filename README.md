@@ -30,6 +30,14 @@ The above enhancements are intended to provide plug-and-play (PnP) support for t
 - Boot up your RPi and wait for the initial setup to complete (5-7 mins)
 - Obtain the IP address of the device using your main network (WAN) router and use it to connect to the LuCi web interface
 
+## Default Credentials <sup>[2](#recommendations)</sup>
+- **LuCi:**
+  - Username: `root`
+  - Password: `root`
+- **WiFi Access Point:** 
+  - SSID: `OpenWRT WiFi`
+  - Password: `changeThisPassKey`
+
 ## Release Schedule
 Automated builds have been scheduled for once a week. Urgent hotfixes will be manually triggered.
 
@@ -41,5 +49,5 @@ Automated builds have been scheduled for once a week. Urgent hotfixes will be ma
 
 ### Recommendations
 <sup>1</sup> Change to a more secure DNS provider after installation<br>
-<sup>2</sup> Change the SSID and PassKey after installation<br>
+<sup>2</sup> Change the default credentials after installation<br>
 <sup>3</sup> Restrict access to the LAN interface after completing configuration<br>
