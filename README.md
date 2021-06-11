@@ -22,13 +22,15 @@ The above enhancements are intended to provide plug-and-play (PnP) support for t
 - A fast SD card (ideally larger than 2 GB)
 
 ## Installation
-- Download the RPi Imager ([macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg), [Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe), [Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb))
-- Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases/latest) from this repository
-- Flash the `openwrt.img.gz` file using the RPi Imager onto your SD card
+1. Download the RPi Imager ([macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg), [Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe), [Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb))
+2. Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases/latest) from this repository
+3. Flash the `openwrt.img.gz` file using the RPi Imager onto your SD card
 
-  ![Screen Recording 2021-06-06 at 12 13 04 PM (6)](https://user-images.githubusercontent.com/15967502/120920902-7478e580-c6c1-11eb-9b62-d4041fcac34d.gif)
-- Connect your RPi's onboard Ethernet port to your main network router's LAN port and boot up the RPi - wait for the initial setup to complete (5-7 mins)
-- Obtain the IP address of the RPi using your main network (WAN) router and use it to connect to the LuCi Web Interface over your preferred browser. You can also connect to LuCi via the WiFi access point created by OpenWrt by heading over to `192.168.1.1`
+    ![Screen Recording 2021-06-06 at 12 13 04 PM (6)](https://user-images.githubusercontent.com/15967502/120920902-7478e580-c6c1-11eb-9b62-d4041fcac34d.gif)
+  
+4. Connect your RPi's onboard Ethernet port to your main network router's LAN port and boot up the RPi
+5. Wait for the initial setup to complete (5-7 mins)
+6. Obtain the IP address of the RPi using your main network (WAN) router and use it to connect to the LuCi Web Interface over your preferred browser. You can also connect to LuCi via the WiFi access point created by OpenWrt by heading over to `192.168.1.1`
 
 ## Default Credentials <sup>[2](#recommendations)</sup>
 - **LuCi Web Interface:**
