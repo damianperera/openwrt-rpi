@@ -1,8 +1,8 @@
 # OpenWrt for RPi 4
-[![build](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml/badge.svg)](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml) [![GitHub issues](https://img.shields.io/github/issues/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/issues) [![GitHub license](https://img.shields.io/github/license/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/blob/main/LICENSE) [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)
+[![build](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml/badge.svg)](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml) [![GitHub stars](https://img.shields.io/github/stars/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/stargazers) [![GitHub issues](https://img.shields.io/github/issues/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/issues) [![GitHub license](https://img.shields.io/github/license/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/blob/main/LICENSE) [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)
 
 Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and includes the following enhancements:
-- Configures a DHCP client so that OpenWrt can obtain an IP address from the WAN network
+- Configures a DHCP client so that OpenWrt can obtain an IP address from the WAN network using the onboard Ethernet port
 - Configures Google DNS servers so that domain names can be resolved <sup>[1](#recommendations)</sup>
 - Configures a 5 GHz WiFi access-point on an isolated LAN network using the onboard WiFi <sup>[2](#recommendations)</sup>
 - Allows access to the LuCi web interface from both the LAN and WAN networks <sup>[3](#recommendations)</sup>
@@ -27,7 +27,7 @@ The above enhancements are intended to provide plug-and-play (PnP) support for t
 - Flash the `openwrt.img.gz` file using the RPi Imager onto your SD card
 
   ![Screen Recording 2021-06-06 at 12 13 04 PM (6)](https://user-images.githubusercontent.com/15967502/120920902-7478e580-c6c1-11eb-9b62-d4041fcac34d.gif)
-- Boot up your RPi and wait for the initial setup to complete (5-7 mins)
+- Connect your RPi's onboard Ethernet port to your main network router and boot it up - wait for the initial setup to complete (5-7 mins)
 - Obtain the IP address of the RPi using your main network (WAN) router and use it to connect to the LuCi Web Interface over your preferred browser. You can also connect to LuCi via the WiFi access point created by OpenWrt by heading over to `192.168.1.1`.
 
 ## Default Credentials <sup>[2](#recommendations)</sup>
