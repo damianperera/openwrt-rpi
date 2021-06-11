@@ -52,4 +52,4 @@ Automated builds have been scheduled for once a week. Urgent hotfixes will be ma
 ### Recommendations
 <sup>1</sup> Change to a more secure DNS provider after installation<br>
 <sup>2</sup> Change the default credentials after installation<br>
-<sup>3</sup> Restrict access to the LAN interface after completing configuration<br>
+<sup>3</sup> Restrict LuCi and SSH access to the LAN interface after completing configuration<br>
