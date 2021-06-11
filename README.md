@@ -27,8 +27,8 @@ The above enhancements are intended to provide plug-and-play (PnP) support for t
 - Flash the `openwrt.img.gz` file using the RPi Imager onto your SD card
 
   ![Screen Recording 2021-06-06 at 12 13 04 PM (6)](https://user-images.githubusercontent.com/15967502/120920902-7478e580-c6c1-11eb-9b62-d4041fcac34d.gif)
-- Connect your RPi's onboard Ethernet port to your main network router and boot it up - wait for the initial setup to complete (5-7 mins)
-- Obtain the IP address of the RPi using your main network (WAN) router and use it to connect to the LuCi Web Interface over your preferred browser. You can also connect to LuCi via the WiFi access point created by OpenWrt by heading over to `192.168.1.1`.
+- Connect your RPi's onboard Ethernet port to your main network router's LAN port and boot up the RPi - wait for the initial setup to complete (5-7 mins)
+- Obtain the IP address of the RPi using your main network (WAN) router and use it to connect to the LuCi Web Interface over your preferred browser. You can also connect to LuCi via the WiFi access point created by OpenWrt by heading over to `192.168.1.1`
 
 ## Default Credentials <sup>[2](#recommendations)</sup>
 - **LuCi Web Interface:**
