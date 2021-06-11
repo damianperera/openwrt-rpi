@@ -26,7 +26,7 @@ The above enhancements are intended to provide plug-and-play (PnP) support for t
 2. Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases/latest) from this repository
 3. Flash the `openwrt.img.gz` file using the RPi Imager onto your SD card
 
-    ![Screen Recording 2021-06-06 at 12 13 04 PM (6)](https://user-images.githubusercontent.com/15967502/120920902-7478e580-c6c1-11eb-9b62-d4041fcac34d.gif)
+    ![ezgif com-gif-maker](https://user-images.githubusercontent.com/15967502/121747825-456ed380-cb08-11eb-9fad-4398a87d989d.gif)
   
 4. Connect your RPi's onboard Ethernet port to your main network router's LAN port and boot up the RPi
 5. Wait for the initial setup to complete (5-7 mins)
