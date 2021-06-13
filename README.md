@@ -2,7 +2,7 @@
 [![build](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml/badge.svg)](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml) [![GitHub stars](https://img.shields.io/github/stars/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/stargazers) [![GitHub issues](https://img.shields.io/github/issues/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/issues) [![GitHub license](https://img.shields.io/github/license/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/blob/main/LICENSE) [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)
 
 Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and includes the following enhancements:
-- Configures a DHCP client so that OpenWrt can obtain an IP address from the WAN network using the onboard Ethernet port
+- Configures a DHCP client so that OpenWrt can obtain an IP address from the WAN network using the Ethernet port
 - Configures Google DNS servers so that domain names can be resolved <sup>[1](#recommendations)</sup>
 - Configures a 5 GHz WiFi access-point on an isolated LAN network using the onboard WiFi adapter<sup>[2](#recommendations)</sup>
 - Allows access to the LuCi web interface from both the LAN and WAN networks <sup>[3](#recommendations)</sup>
@@ -16,6 +16,20 @@ The above enhancements are intended to provide plug-and-play (PnP) support for t
 > OpenWrt can also connect to printers, webcams, modems and soundcards. In general, an OpenWrt device can work with any hardware that has Linux support.
 > 
 > ~ _[Devopedia](https://devopedia.org/openwrt)_
+
+OpenWrt for RPi 4 allows you to use your RPi 4 Model B as a configurable router, through which you can add an always-on VPN connection, network-wide adblock, a BitTorrent client and more. Simply flash the downloadable image (ref. below [instructions](#installation)) and get started immediately.
+
+### Use-cases
+1. Portable WiFi access point
+2. A secure WiFi/LAN router that routes all client traffic via a VPN
+    - Secure access to your home network using WireGuard or OpenVPN
+    - Secure your internet access and prevent your ISP from snooping on your internet activity
+4. A DNS server that blocks ads for all client traffic (adblock)
+5. Reduce latency even during heavy traffic
+6. Bypass restrictions and access Onion sites for all connected clients via Tor
+7. Create additional (highly configurable) guest WiFi access points
+
+For more use-cases visit the [OpenWrt Wiki](https://openwrt.org/reasons_to_use_openwrt#extensibility).
 
 ## Requirements
 - RPi 4 Model B
