@@ -26,9 +26,11 @@ jobs:
        cd wulfy/builds
        cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
        gunzip -v *fac.img.gz || echo Extraction completed with warnings
+       baseFileName=$(ls *.fac.img.gz)
        mv *.img $pwd/rpi.img
        cd $pwd
        echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
+       echo "baseFileName=$baseFileName" >> GITHUB_ENV
     - name: Mount OpenWrt image
       id: mount-image
       uses: damianperera/mount-image-action@v1
@@ -53,8 +55,9 @@ jobs:
        latestDownstreamRepoCommitId=$(git rev-parse --short HEAD)
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
        latestUpstreamRepoCommitId=$(cd wulfy && git rev-parse --short HEAD)
+       baseFileName=${{ env.baseFileName }}
        echo "**release type:** \`$GITHUB_EVENT_NAME\`" > CHANGELOG.txt
-       echo "**base:** \`$(cd wulfy/builds && ls -t1 -d rpi-4_snapshot_*/ | head -n1)\`" >> CHANGELOG.txt
+       echo "**base:** \`${baseFileName%.img.gz}\`" >> CHANGELOG.txt
        echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on \`master\` commit \`$latestUpstreamRepoCommitId\`" >> CHANGELOG.txt
        echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on \`main\` commit \`$latestDownstreamRepoCommitId\`" >> CHANGELOG.txt
        [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo No custom release notes || echo "### Release Notes" >> CHANGELOG.txt && echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.txt
