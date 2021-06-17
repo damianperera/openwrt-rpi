@@ -58,8 +58,8 @@ jobs:
        baseFileName=${{ env.baseFileName }}
        echo "**release type:** \`$GITHUB_EVENT_NAME\`" > CHANGELOG.txt
        echo "**base:** \`${baseFileName%.img}\`" >> CHANGELOG.txt
-       echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on commit \`[$latestUpstreamRepoCommitId](https://github.com/wulfy23/rpi4/commit/$latestUpstreamRepoCommitId)\`" >> CHANGELOG.txt
-       echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on commit \`[$latestDownstreamRepoCommitId](https://github.com/wulfy23/rpi4/commit/$latestDownstreamRepoCommitId)\`" >> CHANGELOG.txt
+       echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on commit [$latestUpstreamRepoCommitId](https://github.com/wulfy23/rpi4/commit/$latestUpstreamRepoCommitId)" >> CHANGELOG.txt
+       echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on commit [$latestDownstreamRepoCommitId](https://github.com/wulfy23/rpi4/commit/$latestDownstreamRepoCommitId)" >> CHANGELOG.txt
        [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo No custom release notes || echo "### Release Notes" >> CHANGELOG.txt && echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.txt
        echo "CHANGELOG:" && cat CHANGELOG.txt
     - name: Create release tag
