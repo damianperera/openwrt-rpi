@@ -1,4 +1,4 @@
-theme: jekyll-theme-hacker
+theme: jekyll-theme-cayman
 title: OpenWrt for RPi
 description: A plug-and-play OpenWrt build for the Raspberry Pi
 show_downloads: true
