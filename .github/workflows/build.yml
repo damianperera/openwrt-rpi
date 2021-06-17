@@ -27,10 +27,10 @@ jobs:
        cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
        gunzip -v *fac.img.gz || echo Extraction completed with warnings
        baseFileName=$(ls *fac.img)
-       mv *.img $pwd/rpi.img
+       mv *fac.img $pwd/rpi.img
        cd $pwd
        echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
-       echo "baseFileName=$baseFileName" >> GITHUB_ENV
+       echo "baseFileName=$baseFileName" >> $GITHUB_ENV
     - name: Mount OpenWrt image
       id: mount-image
       uses: damianperera/mount-image-action@v1
