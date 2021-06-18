@@ -37,7 +37,7 @@ For more use-cases visit the [OpenWrt Wiki](https://openwrt.org/reasons_to_use_o
 
 ## Installation
 1. Download the RPi Imager ([macOS](https://downloads.raspberrypi.org/imager/imager_latest.dmg), [Windows](https://downloads.raspberrypi.org/imager/imager_latest.exe), [Ubuntu](https://downloads.raspberrypi.org/imager/imager_latest_amd64.deb))
-2. Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases/latest) from this repository
+2. Download the [latest release](https://github.com/damianperera/openwrt-rpi/releases/latest/download/openwrt.img.gz) from this repository
 3. Flash the `openwrt.img.gz` file using the RPi Imager onto your SD card
 
     ![ezgif com-gif-maker](https://user-images.githubusercontent.com/15967502/121747825-456ed380-cb08-11eb-9fad-4398a87d989d.gif)
