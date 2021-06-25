@@ -11,13 +11,12 @@ Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and inclu
 The above enhancements are intended to provide plug-and-play (PnP) support for the RPi 4, so that you can simply flash the image and get started immediately.
 
 ## What is OpenWrt?
+OpenWrt for RPi 4 allows you to use your RPi 4 Model B as a configurable router, through which you can add an always-on VPN connection, network-wide adblock, a BitTorrent client and more. Simply flash the downloadable image (ref. below [instructions](#installation)) and get started immediately.
 > With OpenWrt, users/developers can use their router to run a BitTorrent client, enable VPN, create a guest Wi-Fi network, analyze network traffic, do traffic-shaping or apply QoS rules on packets. The router can also run servers: SSH (and do SSH tunneling), IRC server, HTTP server, FTP server, etc. Mesh networking, port knocking, firewalling, wireless bridging, file sharing and real-time monitoring are some other useful features. When configured as a public hotspot, OpenWrt provides a number of functions to manage the hotspot.
 > 
 > OpenWrt can also connect to printers, webcams, modems and soundcards. In general, an OpenWrt device can work with any hardware that has Linux support.
 > 
 > ~ _[Devopedia](https://devopedia.org/openwrt)_
-
-OpenWrt for RPi 4 allows you to use your RPi 4 Model B as a configurable router, through which you can add an always-on VPN connection, network-wide adblock, a BitTorrent client and more. Simply flash the downloadable image (ref. below [instructions](#installation)) and get started immediately.
 
 ### Use-cases
 1. Portable WiFi access point
