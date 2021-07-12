@@ -4,7 +4,7 @@
 Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and includes the following enhancements:
 - Configures a DHCP client so that OpenWrt can obtain an IP address from the WAN network using the Ethernet port
 - Configures Google DNS servers so that domain names can be resolved <sup>[1](#recommendations)</sup>
-- Configures a 5 GHz WiFi access-point on an isolated LAN network using the onboard WiFi adapter<sup>[2](#recommendations)</sup>
+- Configures a 5 GHz WiFi access-point on an isolated LAN network using the onboard WiFi adapter <sup>[2](#recommendations)</sup>
 - Allows access to the LuCi web interface from both the LAN and WAN networks <sup>[3](#recommendations)</sup>
 - Allows SSH access from both the LAN and WAN networks <sup>[3](#recommendations)</sup>
 
