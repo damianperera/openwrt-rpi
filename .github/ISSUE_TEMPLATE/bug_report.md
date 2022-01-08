@@ -32,4 +32,5 @@ If applicable, add screenshots to help explain your problem.
  - How are your LAN and WAN connections configured? [e.g. configured as a DHCP client to the local home/office network, LAN is bridged to WiFi and isolated]
 
 **Additional context**
+
 Add any other context about the problem here.
