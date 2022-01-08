@@ -24,7 +24,7 @@ jobs:
       run: |
        pwd=$(pwd)
        cd wulfy/builds
-       cd "$(ls -t1 -d rpi-4_snapshot_*/ | head -n1)"
+       cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *fac.img.gz || echo Extraction completed with warnings
        baseFileName=$(ls *fac.img)
        mv *fac.img $pwd/rpi.img
