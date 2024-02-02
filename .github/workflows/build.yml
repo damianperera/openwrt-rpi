@@ -57,7 +57,7 @@ jobs:
        latestUpstreamRepoCommitId=$(cd wulfy && git rev-parse --short HEAD)
        baseFileName=${{ env.baseFileName }}
        echo "**build type:** \`$GITHUB_EVENT_NAME\`" > CHANGELOG.txt
-       echo "**base:** \`${baseFileName}.img\`" >> CHANGELOG.txt
+       echo "**base:** \`${baseFileName%.img}\`" >> CHANGELOG.txt
        [[ "${baseFileName}" == *fac* ]] && echo "**release type:** \`factory\`" >> CHANGELOG.txt || [[ "${baseFileName}" == *sys* ]] && echo "**release type:** \`sysupgrade\`" >> CHANGELOG.txt
        echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on commit [$latestUpstreamRepoCommitId](https://github.com/wulfy23/rpi4/commit/$latestUpstreamRepoCommitId)" >> CHANGELOG.txt
        echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on commit [$latestDownstreamRepoCommitId](https://github.com/damianperera/openwrt-rpi/commit/$latestDownstreamRepoCommitId)" >> CHANGELOG.txt
