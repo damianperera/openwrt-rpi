@@ -25,9 +25,9 @@ jobs:
        pwd=$(pwd)
        cd wulfy/builds
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
-       gunzip -v *fac.img.gz || echo Extraction completed with warnings
-       baseFileName=$(ls *fac.img)
-       mv *fac.img $pwd/rpi.img
+       gunzip -v *{fac,sys}.img.gz || echo Extraction completed with warnings
+       baseFileName=$(ls *{fac,sys}.img 2>/dev/null | head -n1)
+       mv *{fac,sys}.img $pwd/rpi.img
        cd $pwd
        echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
        echo "baseFileName=$baseFileName" >> $GITHUB_ENV
@@ -58,6 +58,7 @@ jobs:
        baseFileName=${{ env.baseFileName }}
        echo "**release type:** \`$GITHUB_EVENT_NAME\`" > CHANGELOG.txt
        echo "**base:** \`${baseFileName%.img}\`" >> CHANGELOG.txt
+       [[ "${baseFileName}" == *fac* ]] && echo "**type:** `factory`" >> CHANGELOG.txt || [[ "${baseFileName}" == *sys* ]] && echo "**type:** `sysupgrade`" >> CHANGELOG.txt
        echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on commit [$latestUpstreamRepoCommitId](https://github.com/wulfy23/rpi4/commit/$latestUpstreamRepoCommitId)" >> CHANGELOG.txt
        echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on commit [$latestDownstreamRepoCommitId](https://github.com/damianperera/openwrt-rpi/commit/$latestDownstreamRepoCommitId)" >> CHANGELOG.txt
        [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo No custom release notes || echo "### Release Notes" >> CHANGELOG.txt && echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.txt
