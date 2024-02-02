@@ -51,7 +51,7 @@ jobs:
        gzip -v9 rpi.img
     - name: Create release notes
       run: |
-       latestDownstreamRepoCommit=$(git log -1 --pretty=%B | tr '\n' ' - ')
+       latestDownstreamRepoCommit=$(git log -1 --pretty=%B | tr '\n' ';')
        latestDownstreamRepoCommitId=$(git rev-parse --short HEAD)
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
        latestUpstreamRepoCommitId=$(cd wulfy && git rev-parse --short HEAD)
