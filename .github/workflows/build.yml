@@ -56,9 +56,9 @@ jobs:
        latestUpstreamRepoCommit=$(cd wulfy && git log -1 --pretty=%B)
        latestUpstreamRepoCommitId=$(cd wulfy && git rev-parse --short HEAD)
        baseFileName=${{ env.baseFileName }}
-       echo "**release type:** \`$GITHUB_EVENT_NAME\`" > CHANGELOG.txt
-       echo "**base:** \`${baseFileName%.img}\`" >> CHANGELOG.txt
-       [[ "${baseFileName}" == *fac* ]] && echo "**type:** `factory`" >> CHANGELOG.txt || [[ "${baseFileName}" == *sys* ]] && echo "**type:** `sysupgrade`" >> CHANGELOG.txt
+       echo "**build type:** \`$GITHUB_EVENT_NAME\`" > CHANGELOG.txt
+       echo "**base:** \`${baseFileName}.img\`" >> CHANGELOG.txt
+       [[ "${baseFileName}" == *fac ]] && echo "**release type:** \`factory\`" >> CHANGELOG.txt || [[ "${baseFileName}" == *sys ]] && echo "**release type:** \`sysupgrade\`" >> CHANGELOG.txt
        echo "**[wulfy/rpi4](https://github.com/wulfy23/rpi4) changes:** \`$latestUpstreamRepoCommit\` on commit [$latestUpstreamRepoCommitId](https://github.com/wulfy23/rpi4/commit/$latestUpstreamRepoCommitId)" >> CHANGELOG.txt
        echo "**[damianperera/openwrt-rpi](https://github.com/damianperera/openwrt-rpi) changes:** \`$latestDownstreamRepoCommit\` on commit [$latestDownstreamRepoCommitId](https://github.com/damianperera/openwrt-rpi/commit/$latestDownstreamRepoCommitId)" >> CHANGELOG.txt
        [[ -z "${{ github.event.inputs.releaseNotes }}" ]] && echo No custom release notes || echo "### Release Notes" >> CHANGELOG.txt && echo ${{ github.event.inputs.releaseNotes }} >> CHANGELOG.txt
