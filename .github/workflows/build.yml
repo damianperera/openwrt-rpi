@@ -27,7 +27,7 @@ jobs:
        cd "$(ls -t1 -d rpi-4_*/ | head -n1)"
        gunzip -v *{fac,sys}.img.gz || echo Extraction completed with warnings
        baseFileName=$(ls *{fac,sys}.img 2>/dev/null | head -n1)
-       for file in *{fac,sys}.img; do mv "$file" $pwd/rpi.img; done
+       for file in *{fac,sys}.img; do [ -e "$file" ] && mv "$file" $pwd/rpi.img; done
        cd $pwd
        echo "imagePath=${pwd}/rpi.img" >> $GITHUB_ENV
        echo "baseFileName=$baseFileName" >> $GITHUB_ENV
