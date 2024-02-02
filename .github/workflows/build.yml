@@ -14,9 +14,9 @@ jobs:
     name: release
     steps:
     - name: Checkout damianperera/openwrt-rpi
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
     - name: Checkout wulfy23/rpi4
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
         repository: wulfy23/rpi4
         path: wulfy
@@ -66,7 +66,7 @@ jobs:
     - name: Create release tag
       id: create_tag
       run: |
-        echo "::set-output name=tag::$(date +%Y.%m.%d.%H%M%S)"
+        echo "tag=$(date +%Y.%m.%d.%H%M%S)" >> $GITHUB_OUTPUT
     - name: Create release
       id: create_release
       uses: actions/create-release@v1
