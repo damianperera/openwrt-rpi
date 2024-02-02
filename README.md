@@ -1,5 +1,21 @@
 # OpenWrt for RPi 4
-[![build](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml/badge.svg)](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml) [![GitHub stars](https://img.shields.io/github/stars/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/stargazers) [![GitHub issues](https://img.shields.io/github/issues/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/issues) [![GitHub license](https://img.shields.io/github/license/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/blob/main/LICENSE) [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)](https://twitter.com/intent/tweet?url=https%3A%2F%2Fgithub.com%2Fdamianperera%2Fopenwrt-rpi)
+![status](https://img.shields.io/badge/status-life_support_|_critical_maintenance_only-red) [![build](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml/badge.svg)](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml) [![GitHub stars](https://img.shields.io/github/stars/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/stargazers) [![GitHub issues](https://img.shields.io/github/issues/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/issues) [![GitHub license](https://img.shields.io/github/license/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/blob/main/LICENSE)
+
+---
+
+A note from the upstream maintainer:
+> **builds are on life support;**
+> - cleanup and removal of stale/legacy/unused 'features' or smooth running/setup functions and
+> - basic functional testing of stable release/s 23.05.x
+> - minimal feature additions updation of optimizations where known and/or obvious
+> - cleanup/simplifying of key/current user instructions especially around upgrades/backups and must know steps
+> - add wincp or ssh+nano etc.
+> - simple guide (for wrt.ini)
+> - add luci app cmd backup button for mainstream migration
+>
+> ~ [wulfy23](https://github.com/wulfy23)
+
+---
 
 Based off the works of [wulfy23/rpi4](https://github.com/wulfy23/rpi4) and includes the following enhancements:
 - Configures a DHCP client so that OpenWrt can obtain an IP address from the WAN network using the Ethernet port
