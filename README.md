@@ -70,7 +70,7 @@ For more use-cases visit the [OpenWrt Wiki](https://openwrt.org/reasons_to_use_o
   - PassKey: `changeThisPassKey`
 
 ## Release Schedule
-Automated builds have been scheduled for once a week. Urgent hotfixes will be manually triggered.
+Automated builds have been scheduled for once a month. Urgent hotfixes will be manually triggered.
 
 ---
 
