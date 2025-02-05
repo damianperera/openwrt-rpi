@@ -1,4 +1,4 @@
-<img width="549" alt="image" src="https://github.com/user-attachments/assets/03458920-f29c-4a7a-8056-d835dd89e288" /># OpenWrt for RPi 4
+# OpenWrt for RPi 4
 ![status](https://img.shields.io/badge/status-life_support_|_critical_maintenance_only-red) [![build](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml/badge.svg)](https://github.com/damianperera/openwrt-rpi/actions/workflows/build.yml) [![GitHub stars](https://img.shields.io/github/stars/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/stargazers) [![GitHub issues](https://img.shields.io/github/issues/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/issues) [![GitHub license](https://img.shields.io/github/license/damianperera/openwrt-rpi)](https://github.com/damianperera/openwrt-rpi/blob/main/LICENSE)
 
 ---
